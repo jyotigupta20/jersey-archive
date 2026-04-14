@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Test artifacts
+/test-results/
+/playwright-report/
+
+# Large image assets
+/jersey-logos-pictures/
+/images/
+/public/images/
