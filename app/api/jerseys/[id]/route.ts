@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getJersey, indexJersey, deleteJersey } from "@/lib/elasticsearch";
+import { getJersey, indexJersey, deleteJersey } from "@/lib/db";
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

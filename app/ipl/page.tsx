@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Image from "next/image";
-import { searchJerseys } from "@/lib/elasticsearch";
+import { searchJerseys } from "@/lib/db";
 import { IPLFilters } from "@/components/ipl/IPLFilters";
 import { TeamTimeline } from "@/components/ipl/TeamTimeline";
 import { TeamDetail } from "@/components/ipl/TeamDetail";
@@ -38,13 +38,16 @@ async function IPLContent({ sp }: { sp: Record<string, string> }) {
   const season = sp.season ?? "";
 
   // Fetch all IPL jerseys matching current filters
-  const result = await searchJerseys({
-    sport: "cricket",
-    format: "IPL",
-    team: team || undefined,
-    season: season || undefined,
-    size: 500,
-  }).catch(() => ({ hits: [] as Jersey[], total: 0, aggregations: undefined }));
+  let result: ReturnType<typeof searchJerseys> = { hits: [] as Jersey[], total: 0, aggregations: undefined };
+  try {
+    result = searchJerseys({
+      sport: "cricket",
+      format: "IPL",
+      team: team || undefined,
+      season: season || undefined,
+      size: 500,
+    });
+  } catch { /* use default */ }
 
   const jerseys = result.hits;
 
@@ -150,8 +153,10 @@ export default async function IPLPage({ searchParams }: PageProps) {
   const sp = await searchParams;
 
   // Fetch aggregations for team list (no filters — always full list)
-  const baseAggs = await searchJerseys({ sport: "cricket", format: "IPL", size: 0 })
-    .catch(() => ({ hits: [], total: 0, aggregations: undefined }));
+  let baseAggs: ReturnType<typeof searchJerseys> = { hits: [], total: 0, aggregations: undefined };
+  try {
+    baseAggs = searchJerseys({ sport: "cricket", format: "IPL", size: 0 });
+  } catch { /* use default */ }
 
   const availableTeams = (baseAggs.aggregations?.team ?? [])
     .map((b) => b.key)

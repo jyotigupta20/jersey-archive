@@ -35,12 +35,12 @@ export function JerseyDetailView({ jersey, related }: JerseyDetailViewProps) {
     <div>
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 pt-4 md:pt-6 pb-2">
-        <div className="flex items-center gap-2 text-xs text-[#6B85A8] flex-wrap">
-          <Link href="/" className="hover:text-[#2A4A7A] transition-colors">Home</Link>
+        <div className="flex items-center gap-2 text-xs text-[#8BADD9] flex-wrap">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
           <span>/</span>
-          <Link href={backHref} className="hover:text-[#2A4A7A] transition-colors">{backLabel}</Link>
+          <Link href={backHref} className="hover:text-white transition-colors">{backLabel}</Link>
           <span>/</span>
-          <span className="text-[#2A4A7A]">{jersey.team} {jersey.season}</span>
+          <span className="text-white">{jersey.team} {jersey.season}</span>
         </div>
       </div>
 
@@ -95,27 +95,27 @@ export function JerseyDetailView({ jersey, related }: JerseyDetailViewProps) {
                 <Badge variant="outline">{jersey.jersey_type}</Badge>
                 {jersey.tags.includes("iconic") && <Badge variant="gold">Iconic</Badge>}
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-[#0F1E3D] leading-tight">{jersey.team}</h1>
-              <p className="text-lg md:text-xl text-[#4A6FA5] mt-1">{jersey.season} Season</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-white leading-tight">{jersey.team}</h1>
+              <p className="text-lg md:text-xl text-[#8BADD9] mt-1">{jersey.season} Season</p>
             </div>
 
             {jersey.rating > 0 && (
               <div className="flex items-center gap-3">
                 <RatingStars rating={jersey.rating} size="md" />
-                <span className="text-sm text-[#4A6FA5]">{jersey.rating.toFixed(1)} / 5.0</span>
+                <span className="text-sm text-[#8BADD9]">{jersey.rating.toFixed(1)} / 5.0</span>
               </div>
             )}
 
             {jersey.design_description && (
               <div>
-                <h3 className="text-xs font-semibold text-[#4A6FA5] uppercase tracking-widest mb-2">Design</h3>
-                <p className="text-[#2A4A7A] leading-relaxed">{jersey.design_description}</p>
+                <h3 className="text-xs font-semibold text-[#6B9FD6] uppercase tracking-widest mb-2">Design</h3>
+                <p className="text-[#B0C8E8] leading-relaxed">{jersey.design_description}</p>
               </div>
             )}
 
             {jersey.worn_by && jersey.worn_by.length > 0 && (
               <div>
-                <h3 className="text-xs font-semibold text-[#4A6FA5] uppercase tracking-widest mb-2">
+                <h3 className="text-xs font-semibold text-[#6B9FD6] uppercase tracking-widest mb-2">
                   Players Who Wore It
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -123,7 +123,7 @@ export function JerseyDetailView({ jersey, related }: JerseyDetailViewProps) {
                     <Link
                       key={i}
                       href={`/search?q=${encodeURIComponent(player)}`}
-                      className="text-sm text-[#2A4A7A] bg-[#EAF0FF] hover:bg-[#C8D5EE] border border-[#C8D5EE] px-3 py-1 rounded-lg transition-colors"
+                      className="text-sm text-white bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1 rounded-lg transition-colors"
                     >
                       {player}
                     </Link>
@@ -136,41 +136,41 @@ export function JerseyDetailView({ jersey, related }: JerseyDetailViewProps) {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {metaItems.map((item) =>
                 item.value ? (
-                  <div key={item.label} className="bg-[#FFFFFF] rounded-lg p-3 border border-[#C8D5EE]">
-                    <p className="text-xs text-[#6B85A8] uppercase tracking-wider mb-1">{item.label}</p>
-                    <p className="text-sm font-medium text-[#0F1E3D]">{item.value}</p>
+                  <div key={item.label} className="bg-white/10 rounded-lg p-3 border border-white/10">
+                    <p className="text-xs text-[#6B9FD6] uppercase tracking-wider mb-1">{item.label}</p>
+                    <p className="text-sm font-medium text-white">{item.value}</p>
                   </div>
                 ) : null
               )}
             </div>
 
             {jersey.design_story && (
-              <div className="bg-[#FFFFFF] rounded-xl p-5 border border-[#C8D5EE]">
-                <h3 className="text-xs font-semibold text-[#2E5FBF] uppercase tracking-widest mb-3">
+              <div className="bg-white/10 rounded-xl p-5 border border-white/10">
+                <h3 className="text-xs font-semibold text-[#6BB8FF] uppercase tracking-widest mb-3">
                   The Story Behind the Design
                 </h3>
-                <p className="text-sm text-[#2A4A7A] leading-relaxed">{jersey.design_story}</p>
+                <p className="text-sm text-[#B0C8E8] leading-relaxed">{jersey.design_story}</p>
               </div>
             )}
 
             {jersey.significance && (
-              <div className="bg-[#EAF0FF] rounded-xl p-5 border border-[#1B3A7A]/30">
-                <h3 className="text-xs font-semibold text-[#2E5FBF] uppercase tracking-widest mb-3">
+              <div className="bg-[#1B3A7A]/30 rounded-xl p-5 border border-[#2E5FBF]/30">
+                <h3 className="text-xs font-semibold text-[#6BB8FF] uppercase tracking-widest mb-3">
                   Significance
                 </h3>
-                <p className="text-sm text-[#2A4A7A] leading-relaxed">{jersey.significance}</p>
+                <p className="text-sm text-[#B0C8E8] leading-relaxed">{jersey.significance}</p>
               </div>
             )}
 
             {jersey.notable_matches && jersey.notable_matches.length > 0 && (
               <div>
-                <h3 className="text-xs font-semibold text-[#4A6FA5] uppercase tracking-widest mb-2">
+                <h3 className="text-xs font-semibold text-[#6B9FD6] uppercase tracking-widest mb-2">
                   Notable Matches
                 </h3>
                 <ul className="space-y-2">
                   {jersey.notable_matches.map((match, i) => (
-                    <li key={i} className="text-sm text-[#2A4A7A] flex items-start gap-2">
-                      <span className="text-[#1B3A7A] mt-0.5">›</span>
+                    <li key={i} className="text-sm text-[#B0C8E8] flex items-start gap-2">
+                      <span className="text-[#6BB8FF] mt-0.5">›</span>
                       {match}
                     </li>
                   ))}
@@ -183,7 +183,7 @@ export function JerseyDetailView({ jersey, related }: JerseyDetailViewProps) {
         {/* Related jerseys */}
         {related.length > 0 && (
           <div className="mt-10 md:mt-16">
-            <h2 className="text-lg md:text-xl font-bold text-[#0F1E3D] mb-4 md:mb-6">Related Jerseys</h2>
+            <h2 className="text-lg md:text-xl font-bold text-white mb-4 md:mb-6">Related Jerseys</h2>
             <JerseyGrid jerseys={related} />
           </div>
         )}

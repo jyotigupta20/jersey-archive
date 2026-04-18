@@ -1,4 +1,4 @@
-import { getJersey, getRelatedJerseys } from "@/lib/elasticsearch";
+import { getJersey, getRelatedJerseys } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { JerseyDetailView } from "@/components/jersey/JerseyDetail";
 
@@ -8,7 +8,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const { id } = await params;
-  const jersey = await getJersey(id);
+  const jersey = getJersey(id);
   if (!jersey) return { title: "Jersey Not Found" };
   return {
     title: `${jersey.team} ${jersey.season} — Jersey Archive`,
@@ -21,10 +21,8 @@ export default async function FootballJerseyPage({ params }: PageProps) {
 
   let jersey, related;
   try {
-    [jersey, related] = await Promise.all([
-      getJersey(id),
-      getJersey(id).then((j) => (j ? getRelatedJerseys(j) : [])),
-    ]);
+    jersey = getJersey(id);
+    related = jersey ? getRelatedJerseys(jersey) : [];
   } catch {
     notFound();
   }

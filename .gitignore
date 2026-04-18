@@ -44,6 +44,11 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 
+# SQLite database
+*.db
+*.db-wal
+*.db-shm
+
 # Large image assets
 /jersey-logos-pictures/
 /images/

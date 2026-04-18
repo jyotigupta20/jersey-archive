@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { searchJerseys } from "@/lib/elasticsearch";
+import { searchJerseys } from "@/lib/db";
 import { SearchParams } from "@/lib/types";
 
 export async function GET(req: NextRequest) {

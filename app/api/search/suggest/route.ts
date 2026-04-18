@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { searchSuggestions } from "@/lib/elasticsearch";
+import { searchSuggestions } from "@/lib/db";
 
 export async function GET(req: NextRequest) {
   const q = new URL(req.url).searchParams.get("q") || "";

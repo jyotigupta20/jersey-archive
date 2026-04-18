@@ -50,7 +50,7 @@ export default function AdminImport() {
   return (
     <div className="p-8 max-w-2xl">
       <h1 className="text-2xl font-bold text-[#0F1E3D] mb-2">Import from CSV</h1>
-      <p className="text-sm text-[#4A6FA5] mb-8">Upload a CSV file to bulk-import jerseys into Elasticsearch.</p>
+      <p className="text-sm text-[#4A6FA5] mb-8">Upload a CSV file to bulk-import jerseys.</p>
 
       <div className="bg-[#FFFFFF] border border-[#C8D5EE] rounded-xl p-6 space-y-5">
         <div>

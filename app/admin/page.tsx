@@ -98,7 +98,7 @@ export default function AdminDashboard() {
           </div>
         </>
       ) : (
-        <p className="text-[#6B85A8]">Could not load stats. Is Elasticsearch running?</p>
+        <p className="text-[#6B85A8]">Could not load stats.</p>
       )}
     </div>
   );

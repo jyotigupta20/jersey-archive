@@ -1,4 +1,4 @@
-import { searchJerseys, getAllTournaments } from "@/lib/elasticsearch";
+import { searchJerseys, getAllTournaments } from "@/lib/db";
 import { JerseyGrid } from "@/components/jersey/JerseyGrid";
 import { JerseyFilters } from "@/components/jersey/JerseyFilters";
 

@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { searchJerseys } from "@/lib/elasticsearch";
+import { searchJerseys } from "@/lib/db";
 import { JerseyGrid } from "@/components/jersey/JerseyGrid";
 import { JerseyFilters } from "@/components/jersey/JerseyFilters";
 import { FilterBar } from "@/components/jersey/FilterBar";

@@ -1,7 +1,7 @@
 import { HeroSection } from "@/components/home/HeroSection";
 import { StatsBar } from "@/components/home/StatsBar";
 import { FeaturedJerseys } from "@/components/home/FeaturedJerseys";
-import { getFeaturedJerseys, getStats } from "@/lib/elasticsearch";
+import { getFeaturedJerseys, getStats } from "@/lib/db";
 
 export const revalidate = 300;
 

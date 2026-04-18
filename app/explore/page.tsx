@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { searchJerseys } from "@/lib/elasticsearch";
+import { searchJerseys } from "@/lib/db";
 import { SearchParams } from "@/lib/types";
 import { JerseyGrid } from "@/components/jersey/JerseyGrid";
 import { JerseyFilters } from "@/components/jersey/JerseyFilters";
@@ -54,11 +54,14 @@ async function ExploreResults({ searchParams }: { searchParams: Record<string, s
 
 async function ExploreFilterBar({ searchParams }: { searchParams: Record<string, string> }) {
   // Fetch aggregations without team/season filters so dropdowns always show full option list
-  const base = await searchJerseys({
-    sport: searchParams.sport as SearchParams["sport"],
-    format: searchParams.format,
-    size: 0,
-  }).catch(() => ({ hits: [], total: 0, aggregations: undefined }));
+  let base: ReturnType<typeof searchJerseys> = { hits: [], total: 0, aggregations: undefined };
+  try {
+    base = searchJerseys({
+      sport: searchParams.sport as SearchParams["sport"],
+      format: searchParams.format,
+      size: 0,
+    });
+  } catch { /* use default */ }
 
   return (
     <FilterBar aggregations={base.aggregations} />

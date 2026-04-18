@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { parse } from "csv-parse/sync";
 import { v4 as uuidv4 } from "uuid";
-import { indexJersey } from "@/lib/elasticsearch";
+import { indexJersey } from "@/lib/db";
 import { Jersey } from "@/lib/types";
 import {
   parseRating,

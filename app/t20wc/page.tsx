@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Image from "next/image";
-import { searchJerseys } from "@/lib/elasticsearch";
+import { searchJerseys } from "@/lib/db";
 import { T20Filters } from "@/components/t20wc/T20Filters";
 import { TeamTimeline } from "@/components/t20wc/TeamTimeline";
 import { Jersey } from "@/lib/types";
@@ -25,12 +25,15 @@ async function T20Content({ sp }: { sp: Record<string, string> }) {
   const team = sp.team ?? "";
   const season = sp.season ?? "";
 
-  const result = await searchJerseys({
-    league: "T20 World Cup",
-    team: team || undefined,
-    season: season || undefined,
-    size: 500,
-  }).catch(() => ({ hits: [] as Jersey[], total: 0, aggregations: undefined }));
+  let result: ReturnType<typeof searchJerseys> = { hits: [] as Jersey[], total: 0, aggregations: undefined };
+  try {
+    result = searchJerseys({
+      league: "T20 World Cup",
+      team: team || undefined,
+      season: season || undefined,
+      size: 500,
+    });
+  } catch { /* use default */ }
 
   const jerseys = result.hits;
 
@@ -154,8 +157,10 @@ async function T20Content({ sp }: { sp: Record<string, string> }) {
 export default async function T20WCPage({ searchParams }: PageProps) {
   const sp = await searchParams;
 
-  const baseAggs = await searchJerseys({ league: "T20 World Cup", size: 0 })
-    .catch(() => ({ hits: [], total: 0, aggregations: undefined }));
+  let baseAggs: ReturnType<typeof searchJerseys> = { hits: [], total: 0, aggregations: undefined };
+  try {
+    baseAggs = searchJerseys({ league: "T20 World Cup", size: 0 });
+  } catch { /* use default */ }
 
   const availableTeams = (baseAggs.aggregations?.team ?? [])
     .map((b) => b.key)
