@@ -1,8 +1,12 @@
 import { parse } from "csv-parse/sync";
 import * as fs from "fs";
 import * as path from "path";
-import { v4 as uuidv4 } from "uuid";
+import * as crypto from "crypto";
 import Database from "better-sqlite3";
+
+function uuidv4(): string {
+  return crypto.randomUUID();
+}
 import {
   parseRating,
   parseWornBy,

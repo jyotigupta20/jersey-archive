@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { searchJerseys, indexJersey } from "@/lib/db";
 import { SearchParams } from "@/lib/types";
-import { v4 as uuidv4 } from "uuid";
+import { randomUUID } from "crypto";
+const uuidv4 = randomUUID;
 
 export async function GET(req: NextRequest) {
   try {
