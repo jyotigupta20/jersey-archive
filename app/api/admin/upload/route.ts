@@ -4,7 +4,11 @@ import path from "path";
 import { randomUUID } from "crypto";
 const uuidv4 = randomUUID;
 
-const UPLOAD_DIR = path.join(process.cwd(), "public", "images", "uploads");
+// Uploads live OUTSIDE public/ because Next.js 16 only serves files that
+// existed in public/ at build time. Writing here + serving via /api/uploads/
+// means new admin uploads are visible immediately without a rebuild.
+const UPLOAD_DIR =
+  process.env.UPLOAD_DIR || path.join(process.cwd(), "data", "uploads");
 
 export async function POST(req: NextRequest) {
   const auth = req.headers.get("x-admin-password");
@@ -47,7 +51,7 @@ export async function POST(req: NextRequest) {
       const buffer = Buffer.from(await file.arrayBuffer());
       await writeFile(filepath, buffer);
 
-      urls.push(`/images/uploads/${filename}`);
+      urls.push(`/api/uploads/${filename}`);
     }
 
     return NextResponse.json({ urls });
