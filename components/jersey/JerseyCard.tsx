@@ -74,7 +74,7 @@ export function JerseyCard({ jersey }: JerseyCardProps) {
               {jersey.season} · {jersey.jersey_type}
             </p>
           </div>
-          <div className="flex-shrink-0 hidden sm:block">
+          <div className="flex-shrink-0">
             <RatingStars rating={jersey.rating} />
           </div>
         </div>

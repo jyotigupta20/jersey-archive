@@ -304,7 +304,7 @@ export default function JerseyForm({ jersey, mode }: JerseyFormProps) {
           Sport & Competition
         </h2>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>Sport *</label>
             <select
@@ -337,7 +337,7 @@ export default function JerseyForm({ jersey, mode }: JerseyFormProps) {
 
         {/* Show custom league/format fields when "Other" is selected */}
         {leagues[form.leagueIndex]?.league === "" && (
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className={labelClass}>Custom League Name *</label>
               <input
@@ -368,7 +368,7 @@ export default function JerseyForm({ jersey, mode }: JerseyFormProps) {
           Team & Season
         </h2>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>Team / Country *</label>
             <input
@@ -395,7 +395,7 @@ export default function JerseyForm({ jersey, mode }: JerseyFormProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label className={labelClass}>Jersey Type</label>
             <select
@@ -428,7 +428,7 @@ export default function JerseyForm({ jersey, mode }: JerseyFormProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label className={labelClass}>Brand</label>
             <input
@@ -573,7 +573,7 @@ export default function JerseyForm({ jersey, mode }: JerseyFormProps) {
           Players & Details
         </h2>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>Captain</label>
             <input
@@ -673,18 +673,18 @@ export default function JerseyForm({ jersey, mode }: JerseyFormProps) {
         </div>
       )}
 
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-3 sticky bottom-0 sm:static bg-[#F4F6FB] sm:bg-transparent -mx-4 sm:mx-0 px-4 sm:px-0 py-3 sm:py-0 border-t sm:border-0 border-[#C8D5EE]">
         <button
           type="submit"
           disabled={saving || uploading}
-          className="bg-[#1B3A7A] hover:bg-[#122B5F] text-white font-semibold px-6 py-2.5 rounded-lg text-sm transition-colors disabled:opacity-50"
+          className="bg-[#1B3A7A] hover:bg-[#122B5F] text-white font-semibold px-6 py-3 rounded-lg text-sm transition-colors disabled:opacity-50 min-h-[48px] order-1 sm:order-none"
         >
           {saving ? "Saving..." : mode === "edit" ? "Save Changes" : "Create Jersey"}
         </button>
         <button
           type="button"
           onClick={() => router.push("/admin/jerseys")}
-          className="bg-[#EAF0FF] border border-[#C8D5EE] text-[#2A4A7A] hover:text-[#0F1E3D] px-6 py-2.5 rounded-lg text-sm transition-colors"
+          className="bg-[#EAF0FF] border border-[#C8D5EE] text-[#2A4A7A] hover:text-[#0F1E3D] px-6 py-3 rounded-lg text-sm transition-colors min-h-[48px] order-2 sm:order-none"
         >
           Cancel
         </button>

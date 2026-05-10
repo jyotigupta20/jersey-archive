@@ -89,7 +89,7 @@ export function T20Filters({ availableTeams }: T20FiltersProps) {
               <button
                 key={year}
                 onClick={() => setParam("season", year)}
-                className={`shrink-0 w-[58px] h-[32px] rounded-full text-xs font-medium transition-all ${
+                className={`shrink-0 w-[60px] h-[36px] rounded-full text-xs font-medium transition-all ${
                   activeSeason === year
                     ? "bg-[#1B3A7A] text-white font-bold"
                     : "bg-[#FFFFFF] text-[#4A6FA5] hover:bg-[#EAF0FF] hover:text-[#1B3A7A] border border-[#C8D5EE]"

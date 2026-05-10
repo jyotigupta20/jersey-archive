@@ -68,7 +68,7 @@ export function TeamDetail({ team, jerseys }: TeamDetailProps) {
         <h2 className="text-sm font-semibold text-[#4A6FA5] uppercase tracking-widest mb-5">
           Home Kits — {home.length} seasons
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-5">
           {home.map((jersey) => (
             <JerseyCard key={jersey.id} jersey={jersey} />
           ))}
@@ -81,7 +81,7 @@ export function TeamDetail({ team, jerseys }: TeamDetailProps) {
           <h2 className="text-sm font-semibold text-[#4A6FA5] uppercase tracking-widest mb-5">
             Alternate &amp; Special Kits — {alts.length}
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-5">
             {alts.map((jersey) => (
               <JerseyCard key={jersey.id} jersey={jersey} />
             ))}

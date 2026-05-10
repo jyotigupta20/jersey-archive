@@ -8,6 +8,7 @@
     "start": "node node_modules/next/dist/bin/next start",
     "lint": "eslint",
     "import": "ts-node --project tsconfig.scripts.json scripts/import-csv.ts",
+    "link-images": "ts-node --project tsconfig.scripts.json scripts/link-local-images.ts",
     "test:e2e": "playwright test --project=e2e",
     "test:quality": "playwright test --project=quality",
     "test:all": "playwright test",

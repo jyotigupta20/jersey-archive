@@ -1,9 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Jersey } from "@/lib/types";
+
+function useResponsivePageSize() {
+  const [pageSize, setPageSize] = useState(4);
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    const update = () => setPageSize(mql.matches ? 2 : 4);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+  return pageSize;
+}
 
 const TEAM_LOGOS: Record<string, string> = {
   "Afghanistan":  "/logos/t20wc/afg.jpg",
@@ -32,16 +44,19 @@ function hasImage(j: Jersey) {
   return j.image_urls?.length > 0 && !j.image_urls[0].includes("drive.google");
 }
 
-const PAGE_SIZE = 4;
-
 function JerseySlider({ jerseys }: { jerseys: Jersey[] }) {
+  const pageSize = useResponsivePageSize();
   const [startIdx, setStartIdx] = useState(0);
   const [animating, setAnimating] = useState(false);
 
+  useEffect(() => {
+    setStartIdx((prev) => Math.max(0, Math.min(prev, jerseys.length - pageSize)));
+  }, [pageSize, jerseys.length]);
+
   const canGoLeft = startIdx > 0;
-  const canGoRight = startIdx + PAGE_SIZE < jerseys.length;
-  const remainingAfter = jerseys.length - startIdx - PAGE_SIZE;
-  const visible = jerseys.slice(startIdx, startIdx + PAGE_SIZE);
+  const canGoRight = startIdx + pageSize < jerseys.length;
+  const remainingAfter = jerseys.length - startIdx - pageSize;
+  const visible = jerseys.slice(startIdx, startIdx + pageSize);
 
   function slide(dir: "left" | "right") {
     if (animating) return;
@@ -49,8 +64,8 @@ function JerseySlider({ jerseys }: { jerseys: Jersey[] }) {
     setTimeout(() => {
       setStartIdx((prev) =>
         dir === "right"
-          ? Math.min(prev + PAGE_SIZE, jerseys.length - PAGE_SIZE)
-          : Math.max(prev - PAGE_SIZE, 0)
+          ? Math.min(prev + pageSize, jerseys.length - pageSize)
+          : Math.max(prev - pageSize, 0)
       );
       setAnimating(false);
     }, 500);
@@ -71,7 +86,7 @@ function JerseySlider({ jerseys }: { jerseys: Jersey[] }) {
         </svg>
       </button>
 
-      <div className="grid gap-2 md:gap-4 flex-1 min-w-0" style={{ gridTemplateColumns: `repeat(${PAGE_SIZE}, 1fr)` }}>
+      <div className="grid gap-2 md:gap-4 flex-1 min-w-0" style={{ gridTemplateColumns: `repeat(${pageSize}, 1fr)` }}>
         {visible.map((jersey) => (
           <div
             key={`${jersey.id}-${startIdx}`}

@@ -41,32 +41,32 @@ export default function AdminJerseysList() {
   }
 
   return (
-    <div className="p-8">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-[#0F1E3D]">Jerseys</h1>
+    <div className="p-4 md:p-8">
+      <div className="flex items-center justify-between mb-6 gap-3">
+        <div className="min-w-0">
+          <h1 className="text-xl md:text-2xl font-bold text-[#0F1E3D]">Jerseys</h1>
           <p className="text-sm text-[#4A6FA5] mt-1">{total} total</p>
         </div>
         <Link
           href="/admin/jerseys/new"
-          className="bg-[#1B3A7A] hover:bg-[#122B5F] text-white font-semibold px-4 py-2 rounded-lg text-sm transition-colors"
+          className="shrink-0 bg-[#1B3A7A] hover:bg-[#122B5F] text-white font-semibold px-4 py-2.5 rounded-lg text-sm transition-colors min-h-[44px] flex items-center"
         >
-          + Add Jersey
+          + Add
         </Link>
       </div>
 
       {/* Search */}
-      <div className="flex gap-3 mb-6">
+      <div className="flex gap-2 md:gap-3 mb-6">
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter") { setFrom(0); load(q, 0); } }}
           placeholder="Search jerseys..."
-          className="flex-1 bg-[#FFFFFF] border border-[#C8D5EE] rounded-lg px-3 py-2 text-sm text-[#0F1E3D] placeholder-gray-500 focus:outline-none focus:border-yellow-500/50"
+          className="flex-1 min-w-0 bg-[#FFFFFF] border border-[#C8D5EE] rounded-lg px-3 py-2.5 text-sm text-[#0F1E3D] placeholder-gray-500 focus:outline-none focus:border-yellow-500/50"
         />
         <button
           onClick={() => { setFrom(0); load(q, 0); }}
-          className="bg-[#EAF0FF] border border-[#C8D5EE] hover:border-[#A8BDD8] px-4 py-2 rounded-lg text-sm text-[#2A4A7A] hover:text-[#0F1E3D] transition-colors"
+          className="shrink-0 bg-[#EAF0FF] border border-[#C8D5EE] hover:border-[#A8BDD8] px-4 py-2.5 rounded-lg text-sm text-[#2A4A7A] hover:text-[#0F1E3D] transition-colors min-h-[44px]"
         >
           Search
         </button>
@@ -80,7 +80,8 @@ export default function AdminJerseysList() {
         </div>
       ) : (
         <div className="bg-[#FFFFFF] border border-[#C8D5EE] rounded-xl overflow-hidden">
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[640px]">
             <thead>
               <tr className="border-b border-[#C8D5EE] text-[#4A6FA5] text-xs uppercase tracking-wider">
                 <th className="py-3 px-4 text-left">Team</th>
@@ -125,6 +126,7 @@ export default function AdminJerseysList() {
               ))}
             </tbody>
           </table>
+          </div>
 
           {/* Pagination */}
           <div className="flex items-center justify-between px-4 py-3 border-t border-[#C8D5EE]">

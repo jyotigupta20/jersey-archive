@@ -20,12 +20,12 @@ export default function EditJersey() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <div className="p-8 text-[#4A6FA5]">Loading...</div>;
-  if (!jersey) return <div className="p-8 text-red-500">Jersey not found</div>;
+  if (loading) return <div className="p-4 md:p-8 text-[#4A6FA5]">Loading...</div>;
+  if (!jersey) return <div className="p-4 md:p-8 text-red-500">Jersey not found</div>;
 
   return (
-    <div className="p-8 max-w-3xl">
-      <h1 className="text-2xl font-bold text-[#0F1E3D] mb-1">Edit Jersey</h1>
+    <div className="p-4 md:p-8 max-w-3xl">
+      <h1 className="text-xl md:text-2xl font-bold text-[#0F1E3D] mb-1">Edit Jersey</h1>
       <p className="text-sm text-[#4A6FA5] mb-6">
         {jersey.team} &middot; {jersey.season} &middot; {jersey.format}
       </p>

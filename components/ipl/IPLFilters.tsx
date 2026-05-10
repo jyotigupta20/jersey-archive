@@ -76,7 +76,7 @@ export function IPLFilters({ availableTeams, dark = false }: IPLFiltersProps) {
               <button
                 key={year}
                 onClick={() => setParam("season", year)}
-                className={`shrink-0 w-[58px] h-[32px] rounded-full text-xs font-medium transition-all ${
+                className={`shrink-0 w-[60px] h-[36px] rounded-full text-xs font-medium transition-all ${
                   activeSeason === year
                     ? dark ? "bg-white text-[#0F1E3D] font-bold" : "bg-[#1B3A7A] text-white font-bold"
                     : dark ? "bg-white/10 text-white/70 hover:bg-white/20 border border-white/20" : "bg-[#FFFFFF] text-[#4A6FA5] hover:bg-[#EAF0FF] hover:text-[#1B3A7A] border border-[#C8D5EE]"

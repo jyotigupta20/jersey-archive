@@ -21,7 +21,7 @@ export function JerseyGrid({ jerseys, emptyMessage = "No jerseys found" }: Jerse
   }
 
   return (
-    <div data-testid="jersey-grid" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+    <div data-testid="jersey-grid" className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
       {jerseys.map((jersey) => (
         <JerseyCard key={jersey.id} jersey={jersey} />
       ))}

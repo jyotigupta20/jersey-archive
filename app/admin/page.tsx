@@ -32,9 +32,9 @@ export default function AdminDashboard() {
   }, []);
 
   return (
-    <div className="p-8">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-[#0F1E3D]">Dashboard</h1>
+    <div className="p-4 md:p-8">
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-xl md:text-2xl font-bold text-[#0F1E3D]">Dashboard</h1>
         <p className="text-sm text-[#4A6FA5] mt-1">Overview of Jersey Archive</p>
       </div>
 
